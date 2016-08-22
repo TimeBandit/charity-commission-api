@@ -1,25 +1,28 @@
 {
-  "name": "charity-commission-gov-uk",
-  "version": "1.0.0",
-  "description": "This npm package is a wrapper for V1 of the UK Charity Commission API. This package allows you to search the comissions data. This package uses promises. You will need to register as a developer to receive your API key; please visit http://apps.charitycommission.gov.uk/Showcharity/APIConsole/APIConsoleHome.aspx",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/TimeBandit/charity-commission-gov-uk.git"
-  },
-  "keywords": [
-    "charity",
-    "commission",
-    "charitycommission.gov.uk",
-    "charity-api"
-  ],
-  "author": "Imran Nazir <imran.nazir@yahoo.co.uk>",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/TimeBandit/charity-commission-gov-uk/issues"
-  },
-  "homepage": "https://github.com/TimeBandit/charity-commission-gov-uk#readme"
+    "name": "charity-commission-gov-uk",
+    "version": "1.0.0",
+    "dependencies": {
+        "soap": "^0.16.0"
+    },
+    "description": "This npm package is a promise based wrapper for V1 of the UK Charity Commission API. This package allows you to search the comissions data. You will need to register as a developer to receive your API key before you can use this package.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/TimeBandit/charity-commission-gov-uk.git"
+    },
+    "keywords": [
+        "charity",
+        "commission",
+        "charitycommission.gov.uk",
+        "charity-api"
+    ],
+    "author": "Imran Nazir <imran.nazir@yahoo.co.uk>",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/TimeBandit/charity-commission-gov-uk/issues"
+    },
+    "homepage": "https://github.com/TimeBandit/charity-commission-gov-uk#readme"
 }

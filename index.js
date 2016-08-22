@@ -2,9 +2,10 @@
 
 exports.CCAPIv1 = function() {
 
-    function createClient(url) {
+    function createClient() {
 
         const soap = require('soap');
+        const url = 'http://apps.charitycommission.gov.uk/Showcharity/API/SearchCharitiesV1/SearchCharitiesV1.asmx?wsdl';
 
         return new Promise(function(fullfill, reject) {
 
@@ -22,12 +23,14 @@ exports.CCAPIv1 = function() {
         });
     }
 
-    function operation(operationName, client, args) {
+    function operation(operationName, args) {
 
         /* 
         	For full list of method names & their args see:
         	http://apps.charitycommission.gov.uk/Showcharity/API/SearchCharitiesV1/Docs/DevGuideHome.aspx
         */
+
+        const client = this.createClient();
 
         if (!client) {
 
@@ -55,55 +58,58 @@ exports.CCAPIv1 = function() {
     // Source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
     return {
-        'createClient': createClient(url),
+        'createClient': createClient(),
         // Accepts multiple search criteria variables and returns a list of matching Charities.
-        'GetCharities': method('GetCharities', client, args),
+        'GetCharities': operation('GetCharities', client, args),
         // Allows you to search charities by Keyword
-        'GetCharitiesByKeyword': method('GetCharitiesByKeyword', client, args),
+        'GetCharitiesByKeyword': operation('GetCharitiesByKeyword', client, args),
         // Allows you to search charities by Name
-        'GetCharitiesByName': method('GetCharitiesByName', client, args),
+        'GetCharitiesByName': operation('GetCharitiesByName', client, args),
         // Retrieves Account Listing data for a specific charity.
-        'GetCharityAccountListing': method('GetCharityAccountListing', client, args),
+        'GetCharityAccountListing': operation('GetCharityAccountListing', client, args),
         // Retreives Annual Returns data for a specific charity.
-        'GetCharityAnnualReturns': method('GetCharityAnnualReturns', client, args),
+        'GetCharityAnnualReturns': operation('GetCharityAnnualReturns', client, args),
         // Retrieves Areas of Operation for a specific charity.
-        'GetCharityAreasOfOperation': method('GetCharityAreasOfOperation', client, args),
+        'GetCharityAreasOfOperation': operation('GetCharityAreasOfOperation', client, args),
         // Retrieves specific charity details.
-        'GetCharityByRegisteredCharityNumber': method('GetCharityByRegisteredCharityNumber', client, args),
+        'GetCharityByRegisteredCharityNumber': operation('GetCharityByRegisteredCharityNumber', client, args),
         // Retrieves specific charity subsidiary details.
-        'GetCharityByRegisteredCharityNumberAndSubsidiaryNumber': method('GetCharityByRegisteredCharityNumberAndSubsidiaryNumber', client, args),
+        'GetCharityByRegisteredCharityNumberAndSubsidiaryNumber': operation('GetCharityByRegisteredCharityNumberAndSubsidiaryNumber', client, args),
         // Retrieves chart data for charity assets, liabilities and people.
-        'GetCharityChartAssetsLiabilitiesAndPeople': method('GetCharityChartAssetsLiabilitiesAndPeople', client, args),
+        'GetCharityChartAssetsLiabilitiesAndPeople': operation('GetCharityChartAssetsLiabilitiesAndPeople', client, args),
         // Retrieves chart data for charity charitable spending.
-        'GetCharityChartCharitableSpending': method('GetCharityChartCharitableSpending', client, args),
+        'GetCharityChartCharitableSpending': operation('GetCharityChartCharitableSpending', client, args),
         // Retrieves chart data for charity compliance history.
-        'GetCharityChartComplianceHistory': method('GetCharityChartComplianceHistory', client, args),
+        'GetCharityChartComplianceHistory': operation('GetCharityChartComplianceHistory', client, args),
         // Retrieves chart data for charity financial history.
-        'GetCharityChartFinancialHistory': method('GetCharityChartFinancialHistory', client, args),
+        'GetCharityChartFinancialHistory': operation('GetCharityChartFinancialHistory', client, args),
         // Retrieves chart data for charity income.
-        'GetCharityChartIncome': method('GetCharityChartIncome', client, args),
+        'GetCharityChartIncome': operation('GetCharityChartIncome', client, args),
         // Retrieves chart data for charity income and spending.
-        'GetCharityChartIncomeAndSpending': method('GetCharityChartIncomeAndSpending', client, args),
+        'GetCharityChartIncomeAndSpending': operation('GetCharityChartIncomeAndSpending', client, args),
         // Retrieves chart data for charity spending.
-        'GetCharityChartSpending': method('GetCharityChartSpending', client, args),
+        'GetCharityChartSpending': operation('GetCharityChartSpending', client, args),
         // Retrieves charity financial compliance data.
-        'GetCharityFinancialComplianceTableData': method('GetCharityFinancialComplianceTableData', client, args),
+        'GetCharityFinancialComplianceTableData': operation('GetCharityFinancialComplianceTableData', client, args),
         // Retrieves charity latest filing information.
-        'GetCharityLatestFiling': method('GetCharityLatestFiling', client, args),
+        'GetCharityLatestFiling': operation('GetCharityLatestFiling', client, args),
         // Retrieves charity numbers.
-        'GetCharityNumbersChart': method('GetCharityNumbersChart', client, args),
+        'GetCharityNumbersChart': operation('GetCharityNumbersChart', client, args),
         // Retrieves charity published report.
-        'GetCharityPublishedReport': method('GetCharityPublishedReport', client, args),
+        'GetCharityPublishedReport': operation('GetCharityPublishedReport', client, args),
         // Retrieves registration information for a specific charity.
-        'GetCharityRegistrations': method('GetCharityRegistrations', client, args),
+        'GetCharityRegistrations': operation('GetCharityRegistrations', client, args),
         // Retrieves submission information for a specific charity.
-        'GetCharitySubmissions': method('GetCharitySubmissions', client, args),
+        'GetCharitySubmissions': operation('GetCharitySubmissions', client, args),
         // Retrieves a list of subsidiaries for a specific charity.
-        'GetCharitySubsidiaries': method('GetCharitySubsidiaries', client, args),
+        'GetCharitySubsidiaries': operation('GetCharitySubsidiaries', client, args),
         // Retrieves a list of Trustees for a specific charity.
-        'GetCharityTrustees': method('GetCharityTrustees', client, args),
+        'GetCharityTrustees': operation('GetCharityTrustees', client, args),
         // Retrieves a list of Trustee related charities
-        'GetTrusteeAndRelatedCharities': method('GetTrusteeAndRelatedCharities', client, args)
+        'GetTrusteeAndRelatedCharities': operation('GetTrusteeAndRelatedCharities', client, args)
     };
 
-}
+};
+
+let result = CCAPIv1.createClient().then(GetCharities(client, args));
+let result2 = CCAPIv1.GetCharities(args);
