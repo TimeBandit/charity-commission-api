@@ -1,0 +1,28 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs', '/usr/local/bin/npm', 'version', 'minor' ]
+2 info using npm@2.12.0
+3 info using node@v4.2.6
+4 info preversion charity-commission-gov-uk@1.1.0
+5 info git [ 'status', '--porcelain' ]
+6 verbose stack Error: Error: Git working directory not clean.
+6 verbose stack M index.js
+6 verbose stack     at /usr/local/lib/node_modules/npm/lib/version.js:71:23
+6 verbose stack     at /usr/local/lib/node_modules/npm/lib/version.js:151:34
+6 verbose stack     at ChildProcess.exithandler (child_process.js:204:7)
+6 verbose stack     at emitTwo (events.js:87:13)
+6 verbose stack     at ChildProcess.emit (events.js:172:7)
+6 verbose stack     at maybeClose (internal/child_process.js:821:16)
+6 verbose stack     at Socket.<anonymous> (internal/child_process.js:319:11)
+6 verbose stack     at emitOne (events.js:77:13)
+6 verbose stack     at Socket.emit (events.js:169:7)
+6 verbose stack     at Pipe._onclose (net.js:469:12)
+7 verbose cwd /home/timebandit/Documents/projects/charity-commission-gov-uk
+8 error Linux 4.4.0-31-generic
+9 error argv "/usr/bin/nodejs" "/usr/local/bin/npm" "version" "minor"
+10 error node v4.2.6
+11 error npm  v2.12.0
+12 error Error: Git working directory not clean.
+12 error M index.js
+13 error If you need help, you may report this error at:
+13 error     <https://github.com/npm/npm/issues>
+14 verbose exit [ 1, true ]

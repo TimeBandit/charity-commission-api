@@ -4,9 +4,9 @@
 	http://apps.charitycommission.gov.uk/Showcharity/API/SearchCharitiesV1/Docs/DevGuideHome.aspx
 */
 
-exports.ccAPI = function() {
+exports.ccAPI = function(url = 'http://apps.charitycommission.gov.uk/Showcharity/API/SearchCharitiesV1/SearchCharitiesV1.asmx?wsdl') {
 
-    function createClient(url = 'http://apps.charitycommission.gov.uk/Showcharity/API/SearchCharitiesV1/SearchCharitiesV1.asmx?wsdl') {
+    function createClient(url) {
 
         const soap = require('soap');
 
