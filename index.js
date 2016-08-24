@@ -4,7 +4,7 @@
 	http://apps.charitycommission.gov.uk/Showcharity/API/SearchCharitiesV1/Docs/DevGuideHome.aspx
 */
 
-exports.ccAPI = function(url = 'http://apps.charitycommission.gov.uk/Showcharity/API/SearchCharitiesV1/SearchCharitiesV1.asmx?wsdl') {
+exports.ccAPI = function(url) {
 
     function createClient(url) {
 
@@ -128,6 +128,6 @@ exports.ccAPI = function(url = 'http://apps.charitycommission.gov.uk/Showcharity
 
 /* example usage */
 // const args = { APIKey: '755dfeae-434d-4c90-a', strSearch: 'islam' };
-// const ccAPI = 'http://apps.charitycommission.gov.uk/Showcharity/API/SearchCharitiesV1/SearchCharitiesV1.asmx?wsdl';
-// let charities = charityCommission(ccAPI).GetCharitiesByKeyword(args);
+// const ccAPIUrl = 'http://apps.charitycommission.gov.uk/Showcharity/API/SearchCharitiesV1/SearchCharitiesV1.asmx?wsdl';
+// let charities = ccAPI(ccAPIUrl).GetCharitiesByKeyword(args);
 // console.log(charities);
