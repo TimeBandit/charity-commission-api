@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
 /* 
-	For full list of method names & their args see:
+	For full list of method names & their args see:.
 	http://apps.charitycommission.gov.uk/Showcharity/API/SearchCharitiesV1/Docs/DevGuideHome.aspx
 */
 
