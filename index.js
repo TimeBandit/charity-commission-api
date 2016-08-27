@@ -83,7 +83,7 @@ operationNames.forEach(function(e, i, a) {
 
 module.exports = toExport;
 
-// const ccAPI = require('charity-commission-gov-uk');
+// const ccAPI = require('charity-commission-api');
 // const args = { APIKey: 'xx-xx-xx-x', strSearch: 'happy' };
 
 // ccAPI.GetCharitiesByKeyword(args).then(function(value) {
