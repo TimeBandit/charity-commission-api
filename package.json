@@ -1,10 +1,10 @@
 {
-  "name": "charity-commission-gov-uk",
+  "name": "charity-commission-api",
   "version": "1.2.0",
   "dependencies": {
     "soap": "^0.16.0"
   },
-  "description": "This npm package is a promise based wrapper for V1 of the UK Charity Commission API. This package allows you to search the comissions data. You will need to register as a developer to receive your API key before you can use this package.",
+  "description": "The Unofficial UK Charity Commission API",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
