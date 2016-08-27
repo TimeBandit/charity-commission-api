@@ -13,7 +13,7 @@ npm install charity-commission-api --save
 
 ##Sample Usage
 
-1. Create a new directory `mkdir test`
+1. Create a new directory with `mkdir test`
 2. Enter the directory with `cd test`. Then initialize it with `npm init`. You will be prompted to create a package.json file. Accept all the defaults.
 3. Create an empty js file  `touch index.js`
 4. Install the package with `npm install charity-commission-api --save` this will save the package version to the package.json file
