@@ -4,14 +4,14 @@
   "dependencies": {
     "soap": "^0.16.0"
   },
-  "description": "The Unofficial UK Charity Commission API",
+  "description": "The UK Charity Commission API",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TimeBandit/charity-commission-gov-uk.git"
+    "url": "git+https://github.com/TimeBandit/charity-commission-api.git"
   },
   "keywords": [
     "charity",
@@ -22,7 +22,7 @@
   "author": "Imran Nazir <imran.nazir@yahoo.co.uk>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/TimeBandit/charity-commission-gov-uk/issues"
+    "url": "https://github.com/TimeBandit/charity-commission-api/issues"
   },
-  "homepage": "https://github.com/TimeBandit/charity-commission-gov-uk#readme"
+  "homepage": "https://github.com/TimeBandit/charity-commission-api#readme"
 }
