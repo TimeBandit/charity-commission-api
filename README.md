@@ -31,7 +31,7 @@ ccAPI.<API Method>(args).then(function(result) {
 2. Enter the directory with `cd test`. Then initialize it with `npm init`. You will be prompted to create a package.json file. Accept all the defaults.
 3. Create an empty js file  `touch index.js`
 4. Install the package with `npm install charity-commission-api --save` this will save the package version to the package.json file
-5. Copy the following code into index.js and enter `node index.js` at the terminal to run. Remembering to substitute in you API key.
+5. Copy the following code into index.js. Enter `node index.js` at the terminal to run; remembering to substitute in your API key.
 ```shell
 const ccAPI = require('charity-commission-api');
 const args = { APIKey: 'xx-xx-xx-x', strSearch: 'happy' };
