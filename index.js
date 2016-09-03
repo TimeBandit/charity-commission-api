@@ -64,7 +64,7 @@ const operation = function(operationName, client, args) {
     });
 };
 
-const toExport = {
+const ccAPI = {
     ccAPIUrl,
     createClient
 };
@@ -81,7 +81,7 @@ operationNames.forEach(function(e, i, a) {
     };
 });
 
-module.exports = toExport;
+module.exports = ccAPI;
 
 // const ccAPI = require('charity-commission-api');
 // const args = { APIKey: 'xx-xx-xx-x', strSearch: 'happy' };
