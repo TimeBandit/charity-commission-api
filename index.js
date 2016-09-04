@@ -71,7 +71,7 @@ const ccAPI = {
 
 // iterate through the operation name and create method return a promise
 operationNames.forEach(function(e, i, a) {
-    toExport[e] = function(args) {
+    ccAPIUrl[e] = function(args) {
         return new Promise(function(resolve, reject) {
             createClient(ccAPIUrl).then(function(client) {
                 resolve(operation(e, client, args));
