@@ -98,3 +98,12 @@ ccAPI.GetCharitiesByKeyword(args).then(function(result) {
 **GetTrusteeAndRelatedCharities** - Retrieves a list of Trustee related charities. 
 
 Follow the [Developer Guidlines](http://apps.charitycommission.gov.uk/Showcharity/API/SearchCharitiesV1/Docs/DevGuideHome.aspx) for more information.
+
+##Tests
+
+  npm test
+
+##Contributing
+
+In lieu of a formal styleguide, take care to maintain the existing coding style.
+Add unit tests for any new or changed functionality. Lint and test your code.
