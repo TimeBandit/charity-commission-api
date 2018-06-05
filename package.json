@@ -1,8 +1,8 @@
 {
   "name": "charity-commission-api",
-  "version": "1.15.0",
+  "version": "1.15.1",
   "dependencies": {
-    "soap": "^0.16.0"
+    "soap": "^0.24.0"
   },
   "description": "The UK Charity Commission API",
   "main": "index.js",
