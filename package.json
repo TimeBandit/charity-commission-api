@@ -2,7 +2,7 @@
   "name": "charity-commission-api",
   "version": "1.15.1",
   "dependencies": {
-    "soap": "^0.24.0"
+    "soap": ">=0.19.1"
   },
   "description": "The UK Charity Commission API",
   "main": "index.js",
