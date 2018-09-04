@@ -1,18 +1,21 @@
-![alt tag](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/organisation/logo/98/Home_page.jpg)
+# charity-commission-api
 
-This is the **Unofficial** node package for the [Charity Commission's](https://www.gov.uk/government/organisations/charity-commission) API. It uses [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) to wrap asynchronous calls around the API. With this API you can search the comissions data on all charites resgistered in the United Kingdom.  
+![The 'Charity Commission for England and Wales' logo](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/organisation/logo/98/Home_page.jpg)
+
+This is the **Unofficial** Node package for the [Charity Commission's](https://www.gov.uk/government/organisations/charity-commission) API. It uses [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) to wrap asynchronous calls around the API. With this API you can search the commissions data on all charities registered in the United Kingdom.  
 
 **Note:** Before you begin will need to [register](http://apps.charitycommission.gov.uk/Showcharity/API/SearchCharitiesV1/Docs/SearchCharitiesV1Home.aspx) as a developer to receive your API key.
 
-
+## Installation
 
 To install locally:
 ```shell
 npm install charity-commission-api --save
 ```
 
-###General Syntax
-```shell
+### General Syntax
+
+```js
 const ccAPI = require('charity-commission-api');
 const args = { APIKey: 'xx-xx-xx-x', strSearch: '<search term>' };
 
@@ -26,13 +29,16 @@ ccAPI.<API Method>(args).then(function(result) {
    
 });
 ```
-##Sample Usage
+
+## Sample Usage
+
 1. Create a new directory with `mkdir test`
 2. Enter the directory with `cd test`. Then initialize it with `npm init`. You will be prompted to create a package.json file. Accept all the defaults.
 3. Create an empty js file  `touch index.js`
 4. Install the package with `npm install charity-commission-api --save` this will save the package version to the package.json file
 5. Copy the following code into index.js. Enter `node index.js` at the terminal to run; remembering to substitute in your API key.
-```shell
+
+```js
 const ccAPI = require('charity-commission-api');
 const args = { APIKey: 'xx-xx-xx-x', strSearch: 'happy' };
 
@@ -47,8 +53,9 @@ ccAPI.GetCharitiesByKeyword(args).then(function(result) {
 });
 ```
 
-##API 
-###Supported Methods
+## API 
+### Supported Methods
+
 **GetCharities** - Accepts multiple search criteria variables and returns a list of matching Charities.
 
 **GetCharitiesByKeyword** - Allows you to search charities by Keyword
@@ -97,9 +104,9 @@ ccAPI.GetCharitiesByKeyword(args).then(function(result) {
 
 **GetTrusteeAndRelatedCharities** - Retrieves a list of Trustee related charities. 
 
-Follow the [Developer Guidlines](http://apps.charitycommission.gov.uk/Showcharity/API/SearchCharitiesV1/Docs/DevGuideHome.aspx) for more information.
+Follow the [Developer Guidelines](http://apps.charitycommission.gov.uk/Showcharity/API/SearchCharitiesV1/Docs/DevGuideHome.aspx) for more information.
 
-##Contributing
+## Contributing
 
 In lieu of a formal styleguide, take care to maintain the existing coding style.
 Add unit tests for any new or changed functionality. Lint and test your code.
