@@ -1,93 +1,90 @@
-/*jshint esversion: 6 */
-
 /* 
     For full list of method names & their args see:.
     http://apps.charitycommission.gov.uk/Showcharity/API/SearchCharitiesV1/Docs/DevGuideHome.aspx
 */
 
-const ccAPIUrl = 'http://apps.charitycommission.gov.uk/Showcharity/API/SearchCharitiesV1/SearchCharitiesV1.asmx?wsdl';
+const soap = require('soap')
+
+function stripOutSoapTextFromErrorMessages(message) {
+  const asciiArrow = '--->'
+  
+  const hasAsciiArrow = message.includes(asciiArrow)
+  if (!hasAsciiArrow) {
+    return message
+  }
+  
+  const indexOfArrow = message.indexOf(asciiArrow)
+  const textAfterArrow = message.substring(indexOfArrow + asciiArrow.length).trim()
+  
+  return stripOutSoapTextFromErrorMessages(textAfterArrow)
+}
+
+const CHARITY_COMMISSION_API_URL = 'http://apps.charitycommission.gov.uk/Showcharity/API/SearchCharitiesV1/SearchCharitiesV1.asmx?wsdl'
 
 const operationNames = [
-    "GetCharityByRegisteredCharityNumber",
-    "GetCharityByRegisteredCharityNumberAndSubsidiaryNumber",
-    "GetCharities",
-    "GetCharitiesByKeyword",
-    "GetCharitiesByName",
-    "GetCharityAccountListing",
-    "GetCharityAnnualReturns",
-    "GetCharityChartAssetsLiabilitiesAndPeople",
-    "GetCharityChartCharitableSpending",
-    "GetCharityChartComplianceHistory",
-    "GetCharityChartFinancialHistory",
-    "GetCharityChartIncome",
-    "GetCharityChartSpending",
-    "GetCharityChartIncomeAndSpending",
-    "GetCharityNumbersChart",
-    "GetCharityFinancialComplianceTableData",
-    "GetCharityLatestFiling",
-    "GetCharityAreasOfOperation",
-    "GetCharityPublishedReport",
-    "GetCharityRegistrations",
-    "GetCharitySubmissions",
-    "GetCharitySubsidiaries",
-    "GetCharityTrustees",
-    "GetTrusteeAndRelatedCharities",
-];
+  'GetCharityByRegisteredCharityNumber',
+  'GetCharityByRegisteredCharityNumberAndSubsidiaryNumber',
+  'GetCharities',
+  'GetCharitiesByKeyword',
+  'GetCharitiesByName',
+  'GetCharityAccountListing',
+  'GetCharityAnnualReturns',
+  'GetCharityChartAssetsLiabilitiesAndPeople',
+  'GetCharityChartCharitableSpending',
+  'GetCharityChartComplianceHistory',
+  'GetCharityChartFinancialHistory',
+  'GetCharityChartIncome',
+  'GetCharityChartSpending',
+  'GetCharityChartIncomeAndSpending',
+  'GetCharityNumbersChart',
+  'GetCharityFinancialComplianceTableData',
+  'GetCharityLatestFiling',
+  'GetCharityAreasOfOperation',
+  'GetCharityPublishedReport',
+  'GetCharityRegistrations',
+  'GetCharitySubmissions',
+  'GetCharitySubsidiaries',
+  'GetCharityTrustees',
+  'GetTrusteeAndRelatedCharities'
+]
 
-const createClient = function(url) {
-    const soap = require('soap');
-    return new Promise(function(resolve, reject) {
-        soap.createClient(url, function(err, client) {
-            if (err) {
-                console.log(`→ \t Client creation failed with error: ${err}`);
-                console.log(`→ \t Check your network connection`);
-                reject(err);
-            } else {
-                resolve(client);
-            }
-        });
-    });
-};
+function createSoapClientForOperation(operationName, args, { apiKey, timeout, keepAlive }) {
+  return soap.createClientAsync(CHARITY_COMMISSION_API_URL).then((client) => {
+    const argsWithApiKey = Object.assign({ APIKey: apiKey }, args)  
+    
+    const options = {}
+    if (timeout) options.timeout = timeout
+    if (keepAlive) options.forever = keepAlive
+    
+    return new Promise((resolve, reject) => {
+      client[operationName](argsWithApiKey, (err, results) => {
+        if (results === null) {
+          return reject(new Error('No results found'))
+        }
 
-const operation = function(operationName, client, args) {
-    if (!client) {
-        return Promise.reject('Please supply a valid client object using the createClient operation');
-    }
-    return new Promise(function(resolve, reject) {
-        client[operationName](args, function(err, result) {
-            if (err) {
-                reject({ operationName, err });
-            } else {
-                resolve(result);
-            }
-        });
-    });
-};
+        return resolve(results[`${operationName}Result`])
+      }, options)
+    })
+  }).catch(err => {
+    throw new Error(stripOutSoapTextFromErrorMessages(err.message))
+  })
+}
 
-const ccAPI = {
-    ccAPIUrl,
-    createClient
-};
+class charityCommissionAPI {
+  constructor({ apiKey, timeout, keepAlive }) {
+    this.apiKey = apiKey
+    this.timeout = timeout
+    this.keepAlive = keepAlive
+  }
+}
 
-// iterate through the operation name and create method return a promise
-operationNames.forEach(function(e, i, a) {
-    ccAPI[e] = function(args) {
-        return new Promise(function(resolve, reject) {
-            createClient(ccAPIUrl).then(function(client) {
-                resolve(operation(e, client, args));
+// iterate through the operation name and create a method on the charityCommisionAPI class
+operationNames.forEach((operationName) => {
+  const newOperationFunction = function(args) {
+    return createSoapClientForOperation(operationName, args, this)
+  }
+  
+  charityCommissionAPI.prototype[operationName] = newOperationFunction
+})
 
-            });
-        });
-    };
-});
-
-module.exports = ccAPI;
-
-// const ccAPI = require('charity-commission-api');
-// const args = { APIKey: 'xx-xx-xx-x', strSearch: 'happy' };
-
-// ccAPI.GetCharitiesByKeyword(args).then(function(value) {
-//     console.log(value);
-// }).catch(function(err) {
-//     console.log(`Call to ${err.operationName} failed with error: ${err.err}`);
-// });
+module.exports = charityCommissionAPI
